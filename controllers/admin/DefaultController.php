@@ -13,7 +13,7 @@ use panix\engine\controllers\AdminController;
  */
 class DefaultController extends AdminController
 {
-    public $icon = 'location-map';
+    public $icon = 'home';
 
     public function actions()
     {
@@ -27,20 +27,16 @@ class DefaultController extends AdminController
 
     public function actionIndex()
     {
-        $this->pageName = Yii::t('companies/admin', 'MAPS');
+        $this->pageName = Yii::t('companies/default', 'MODULE_NAME');
         if (Yii::$app->user->can("/{$this->module->id}/{$this->id}/*") || Yii::$app->user->can("/{$this->module->id}/{$this->id}/create")) {
             $this->buttons[] = [
-                'label' => Yii::t('companies/admin', 'CREATE_MAP'),
+                'label' => Yii::t('app/default', 'CREATE'),
                 'url' => ['create'],
                 'icon' => 'add',
                 'options' => ['class' => 'btn btn-success']
             ];
         }
         $this->view->params['breadcrumbs'] = [
-            [
-                'label' => Yii::t('companies/default', 'MODULE_NAME'),
-                'url' => ['/admin/companies'],
-            ],
             $this->pageName
         ];
 
@@ -62,19 +58,15 @@ class DefaultController extends AdminController
 
 
         if ($isNew) {
-            $this->pageName = Yii::t('companies/admin', 'CREATE_MAP');
+            $this->pageName = Yii::t('app/default', 'CREATE');
         } else {
-            $this->pageName = Yii::t('companies/admin', 'UPDATE_MAP', ['name' => $model->name]);
+            $this->pageName = Yii::t('companies/default', 'UPDATE', ['name' => $model->name]);
         }
 
         $this->view->params['breadcrumbs'] = [
             [
                 'label' => Yii::t('companies/default', 'MODULE_NAME'),
                 'url' => ['/admin/companies'],
-            ],
-            [
-                'label' => Yii::t('companies/admin', 'MAPS'),
-                'url' => ['index'],
             ],
             $this->pageName
         ];

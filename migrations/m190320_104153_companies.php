@@ -6,11 +6,11 @@
  * @author PIXELION CMS development team <dev@pixelion.com.ua>
  * @link http://pixelion.com.ua PIXELION CMS
  *
- * Class m190330_104053_contacts_map
+ * Class m190320_104153_companies
  */
 
 use panix\engine\db\Migration;
-use panix\mod\comapnies\models\Companies;
+use panix\mod\companies\models\Companies;
 
 class m190320_104153_companies extends Migration
 {
@@ -27,9 +27,6 @@ class m190320_104153_companies extends Migration
             'active' => $this->boolean()->defaultValue(false),
             'width' => $this->string(5)
         ], $this->tableOptions);
-
-
-        $this->loadSettings();
     }
 
     public function down()

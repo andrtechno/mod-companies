@@ -1,4 +1,8 @@
 <?php
 return [
-    'NAME' => 'Название компании',
+    'NAME' => 'Company name',
+    'ADDRESS' => 'Address',
+    'PHONE' => 'Phone',
+    'EDRPOU' => 'EDRPOU',
+    'ACTIVE' => 'Active',
 ];

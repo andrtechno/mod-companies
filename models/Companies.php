@@ -2,21 +2,18 @@
 
 namespace panix\mod\companies\models;
 
-use panix\lib\google\maps\overlays\Animation;
 use Yii;
-use panix\mod\contacts\models\MarkersQuery;
-use panix\mod\contacts\models\Maps;
 use panix\engine\db\ActiveRecord;
 
 /**
- * Class Markers
+ * Class Companies
  *
  * @property integer $id
- * @property integer $map_id
- * @property float $opacity
+ * @property string $phone
+ * @property string $address
  * @property string $name
- * @property string $content_body
- * @property boolean $draggable
+ * @property integer $edrpou
+ * @property boolean $active
  *
  * @package panix\mod\companies\models
  */
@@ -43,7 +40,8 @@ class Companies extends ActiveRecord
             [['name'], 'required'],
             [['name'], 'trim'],
             [['active'], 'boolean'],
-            [['address','name'], 'string', 'max' => 255],
+            [['edrpou'], 'integer'],
+            [['address','name','phone'], 'string', 'max' => 255],
         ];
     }
 

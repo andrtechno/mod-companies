@@ -1,5 +1,6 @@
 <?php
 return [
-    'MODULE_NAME' => 'Компании',
-    'MODULE_DESC' => 'Управление и настройка компаний',
+    'MODULE_NAME' => 'Companies',
+    'MODULE_DESC' => 'Management and configuration of companies',
+    'UPDATE' => 'Editing {name}'
 ];

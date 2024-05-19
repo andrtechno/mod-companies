@@ -1,35 +1,25 @@
 <?php
 
-namespace panix\mod\contacts;
+namespace panix\mod\companies;
 
 use Yii;
 use panix\engine\WebModule;
-use yii\base\BootstrapInterface;
 
 /**
  * Class Module
- * @package panix\mod\contacts
+ * @package panix\mod\companies
  *
  * @property array $requireFields
  * @property yii\validators\Validator $phoneValidator
  * @property string $mailPath
  */
-class Module extends WebModule implements BootstrapInterface
+class Module extends WebModule
 {
 
     public $icon = 'phone';
     public $mailPath = '@contacts/mail';
     public $phoneValidator = 'panix\ext\telinput\PhoneInputValidator';
     public $requireFields = ['name', 'phone', 'text'];
-
-    public function bootstrap($app)
-    {
-        $app->getUrlManager()->addRules([
-            'contacts' => 'contacts/default/index',
-            'contacts/captcha' => 'contacts/default/captcha'
-        ], true);
-
-    }
 
     public function getPhones()
     {
@@ -41,15 +31,6 @@ class Module extends WebModule implements BootstrapInterface
         }
     }
 
-    public function getEmails()
-    {
-        $cfg = Yii::$app->settings->get($this->id);
-        if ($cfg['email']) {
-            return explode(',', $cfg['email']);
-        } else {
-            return false;
-        }
-    }
 
     public function getAddress()
     {
@@ -91,18 +72,6 @@ class Module extends WebModule implements BootstrapInterface
                                 'icon' => 'location-map',
                                 'visible' => Yii::$app->user->can('/contacts/admin/maps/index') || Yii::$app->user->can('/contacts/admin/maps/*')
                             ],
-                            [
-                                'label' => Yii::t('contacts/admin', 'MARKERS'),
-                                'url' => ['/admin/contacts/markers'],
-                                'icon' => 'location-marker',
-                                'visible' => Yii::$app->user->can('/contacts/admin/markers/index') || Yii::$app->user->can('/contacts/admin/markers/*')
-                            ],
-                            [
-                                'label' => Yii::t('app/default', 'SETTINGS'),
-                                "url" => ['/admin/contacts/settings'],
-                                'icon' => 'settings',
-                                'visible' => Yii::$app->user->can('/contacts/admin/settings/index') || Yii::$app->user->can('/contacts/admin/settings/*')
-                            ]
                         ]
                     ],
                 ],
@@ -113,20 +82,18 @@ class Module extends WebModule implements BootstrapInterface
     public function getAdminSidebar()
     {
         $menu = $this->getAdminMenu();
-        //  $mod = new \panix\engine\bootstrap\Nav;
-        //   $items = $mod->findMenu($this->id);
         return \yii\helpers\ArrayHelper::merge($menu['modules']['items'], $menu['modules']['items'][0]['items']);
     }
 
     public function getInfo()
     {
         return [
-            'label' => Yii::t('contacts/default', 'MODULE_NAME'),
+            'label' => Yii::t('companies/default', 'MODULE_NAME'),
             'author' => 'andrew.panix@gmail.com',
             'version' => '1.0',
             'icon' => $this->icon,
-            'description' => Yii::t('contacts/default', 'MODULE_DESC'),
-            'url' => ['/admin/contacts'],
+            'description' => Yii::t('companies/default', 'MODULE_DESC'),
+            'url' => ['/admin/companies'],
         ];
     }
 
